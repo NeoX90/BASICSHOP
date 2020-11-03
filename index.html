@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./media/css/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Nike Shop</title>
+</head>
+<body>
+            <!-- div gio hang  -->
+            <div>
+                <table>
+                    <thead>
+                        <th>Image</th> 
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>ProductType</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Cost</th>
+                        <th>Edit</th>
+                    </thead>
+                    <tbody id="tableCart">
+                        <!-- js code -->
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="totalCart" id="totalCart" colspan="7"></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <!-- div gio hang -->
+    <!-- header -->
+    <div class="container">
+        <!-- log in -->
+        <div class="logIn" style="display: flex; justify-content: flex-end;">
+                <!-- <div ><button id="aboutUs" class="logInItems">About us</button></div> -->
+                <div >
+                    <button id="signIn" class="logInItems">Sign In</button>
+                    
+                    
+                </div>
+        </div>
+        <!-- log in -->
+
+        <nav class="row" id="logoBar" >
+            <div class="menu-icon" style="padding-left: 20px;"><span class="fas fa-bars" id="menu-icon-bars"></span></div>
+            <!-- <div class="col-4" > -->
+                <div id="logo" ><img src="./media/img/logo + img/logoNike.png" style="height: 20px;" alt=""></div>
+            <!-- </div> style="width: 30%;" -->
+            <!-- <div class="col-8" >  style="width: 70%; display: flex;" -->
+                
+                <div class="menu-items" >
+
+                    <li><button class="btn_menu" id="proMen">Men</button></li>
+                    <li><button class="btn_menu" id="proWomen">Women</button></li>
+                    <li><button class="btn_menu" id="">About Us</button></li>
+                    <li><button class="btn_menu" id="">Contact Us</button></li>
+                    <li><button class="btn_menu" id="">Blog</button></li>
+
+                </div>
+                <div  style="display: flex;">
+                    <form class="form-search" id="form-search" >
+                        <div class="box-search" style="position: relative;">
+                            <input id="search" type="text" style = "border-radius: 15px;outline: none; " placeholder="search" list="ProductsList" >
+                            <button id="conner" type="button" onclick="getInputValue()" style="border-radius: 50%; outline: none;" ><i class="fa fa-search"></i></button>
+                        </div>
+                        <datalist id="ProductsList">
+
+                        </datalist>
+                                        
+                    </form>
+                    <button id="shopCart" style="background-color:white; border: none; outline: none;"><div class="fa fa-shopping-cart" id="numberCard"></div></button>
+                </div>
+            <div class="search-icon" id="search-icon"><span class="fas fa-search"></span></div>
+            <div class="cancel-icon"><span class="fas fa-times"></span></div>
+            
+            </nav>
+
+        <div class="sliderShow">
+            <div id="menuItems">
+                <img src="./media/img/logo + img/adidas.jpg" class="mySlides" style="width: 100%;" alt="">
+                <img src="./media/img/logo + img/balenciaga.jpg" class="mySlides" style="width: 100%;" alt="">
+                <img src="./media/img/logo + img/nike.jpg" class="mySlides" style="width: 100%;" alt="">
+                <img src="./media/img/logo + img/vetements.jpg" class="mySlides" style="width: 100%;" alt="">
+            </div>
+ 
+            <button class="w3-button w3-display-left" id="prev" style="border : none; background-color: none;" onclick="plusDivs(-1)">&#10094;</button>
+            <button class="w3-button w3-display-right" id="next" style="border : none; background-color: none;" onclick="plusDivs(1)">&#10095;</button>
+        </div>
+    
+        <!-- header -->
+        <!-- main -->
+        <div id="main" style="">
+            <!-- sort by  -->
+            <div class="show_type" style="  position: relative; display: flex; justify-content: flex-end; padding-top: 10px; padding-bottom: 10px;">
+                <div >Sort by :</div>
+                <select name="" id="sortby" class="showSort" style="border: none; color: gray;">
+                    <option value="default">Default</option>
+                    <option value="low" >Price: Low - High</option>
+                    <option value="high" >Price: High - Low</option>
+                </select>
+            </div>
+            <!-- sort by -->
+            <!-- filter btn + products -->
+            <div class="row" id="row-items">
+                <div class="col-2" id="brand-items" style="width: 30%; ">
+                    <div class="brand">
+                        <button id="apparel">Apparel</button>
+                    </div>
+                    <div class="brand">
+                        <button id="shoes">Shoes</button>
+                    </div>
+                    <div class="brand">
+                        <button id="accessories">Accessories</button>
+                    </div>
+                    <div class="brand">
+                        <button id="nike">Nike</button>
+                    </div>
+                    <div class="brand">
+                        <button id="adidas">Adidas</button>
+                    </div>
+                    <div class="brand">
+                        <button id="vetements">Vetements</button>
+                    </div>
+                    <div class="brand">
+                        <button id="balenciaga">Balenciaga</button>
+                    </div>
+                </div>
+
+                <!-- show sản phẩm -->
+                <div id="showList" class="col-7" >
+                    <!-- products -->
+                </div>
+                
+                <!-- </div> -->
+        <!-- main -->
+    </div>
+    <div class="footer"></div>
+
+</body>
+<script src="./media/js/data.js"></script>
+<script src="./media/js/basic.js"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+</html>
