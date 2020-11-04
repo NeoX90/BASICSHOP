@@ -152,7 +152,7 @@ nav{
 .menu-items{
     display: flex;
     list-style: none;
-    padding: 0 0 0 40px;
+    padding: 0 0 0 160px;
     flex: 1;
     
 }
@@ -161,14 +161,20 @@ nav{
 }
 .menu-items li{
     padding: 0 15px;
+    
 }
 
 #row-items {
     /* flex-direction: row; */
     display: flex;
+    
 }
 .col-7{
     width: 70%;
+}
+td{
+    border-right: solid;
+    border-top: solid;
 }
 /* #ProductsList{
     margin-right: 10%;

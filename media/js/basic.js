@@ -9,7 +9,7 @@ let arrayName = [];
 let showNike = document.getElementById('nike');
 let showAdidas = document.getElementById('adidas');
 let showBalen = document.getElementById('balenciaga');
-let showVete = document.getElementById('vetements');
+let showVete = document.getElementById('vetements'); 
 let showMen = document.getElementById('proMen');
 let showWoman = document.getElementById('proWomen');
 let showApparel = document.getElementById('apparel');
@@ -105,6 +105,7 @@ function searchResult (name){console.log(name)
   `
   )
 }
+// tên tìm kiếm
 function fillArr(){
   for( let i = 0 ; i <products.length;i++){
     arrayName.push(products[i].name.toLowerCase())
@@ -114,7 +115,7 @@ function fillArr(){
     searchResult(products[i].name)
   }
 }
-console.log(fillArr())
+fillArr()
 
 
 
@@ -180,15 +181,19 @@ showAccessories.addEventListener('click',()=>{
 
 function getInputValue(){
   showList.innerHTML ='';
+  products = JSON.parse(localStorage.getItem('productData'));
   var inputVal = search_Text.value.toLowerCase();
-  for(let i = 0 ; i < products.length ;i++){
-    let x = products[i].name.toLowerCase()
-      if(x == inputVal){
-        soProduct(products[i].img, products[i].name, products[i].price);
-        searchResult(products[i].name);
+  products = products.filter(x => x.name.toLowerCase() == inputVal);
+  getdata(products);
+  // for(let i = 0 ; i < products.length ;i++){
+  //   let x = products[i].name.toLowerCase()
+  //     if(x == inputVal){
+  //       // soProduct(products[i].img, products[i].name, products[i].price);
+  //       getdata(products);
+  //       searchResult(products[i].name);
         
-    }
-  }
+  //   }
+  // }
 }
 
 // sắp xếp theo giá 
@@ -249,29 +254,32 @@ function updateTable() {
     }else {
       gender = item.gender[0];
     }
-    proType = item.productType;
     number = item.number;
     price = item.price;
     cost = price*number;
     totalPrice += price*number;
-    addTable(idd, img, name, gender, proType, number, price, cost, totalPrice)
+    addTable(idd, img, name, gender, number, price, cost, totalPrice)
   }
 }
-function addTable(idd, img, name, gender, proType, number, price, cost, totalPrice){
+function addTable(idd, img, name, gender, number, price, cost, totalPrice){
   let totalCart = document.getElementById('totalCart');
   let tabbleCart = document.getElementById('tableCart');
-  tabbleCart.insertAdjacentHTML('beforeend',`
-  <tr>
-    <td><img height="160rem" width="160rem" src="${img}" alt="${idd}"></td>
-    <td>${name}</td>
-    <td>${gender}</td>
-    <td>${proType}</td>
-    <td><input type="number" id="editNumber_${idd}" placeholder="${number}" value="${number}"/></td>
-    <td>$${price}</td>
-    <td>$${cost}</td>
-    <td><button class="btn_delBill" onclick="delBill()">Delete</button></td>
-  </tr>`)
-  totalCart.innerHTML = '$'+totalPrice;
+  tabbleCart.insertAdjacentHTML('beforeend',
+`
+  <div class = 'boxProducts' style = "width : 70% ; display: flex; padding-bottom : 20px;"> 
+    <div class = "BoxImg"><img height="160rem" width="160rem" src="${img}" alt="${idd}"></div>
+    <div class = "infoProducts" style = "flex-direction: column;">
+      <div>${name}</div>
+      <div>${gender}</div>
+      <div>Quantity :<input type="number" id="editNumber_${idd}" placeholder="${number}" value="${number}"/></div>
+      <div>$${cost} </div>
+      <div>${price}</div>
+      <div><button class="btn_delBill" onclick="delBill()">Delete</button></div>
+    </div>
+    
+  </div>
+  `)
+  totalCart.innerHTML = 'Subtotal :  $'+totalPrice;
   let editNumber = document.getElementById(`editNumber_${idd}`);
   editNumber.addEventListener('change',()=>{
     for (item of listPro) {

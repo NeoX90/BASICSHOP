@@ -7,35 +7,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./media/css/style.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <title>Nike Shop</title>
+    <title>BASIC SHOP</title>
 </head>
 <body>
-            <!-- div gio hang  -->
-            <div>
-                <table>
-                    <thead>
-                        <th>Image</th> 
-                        <th>Name</th>
-                        <th>Gender</th>
-                        <th>ProductType</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Cost</th>
-                        <th>Edit</th>
-                    </thead>
-                    <tbody id="tableCart">
-                        <!-- js code -->
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td class="totalCart" id="totalCart" colspan="7"></td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-            <!-- div gio hang -->
     <!-- header -->
     <div class="container">
+        <!-- div gio hang  -->
+        <div >
+                <div id="tableCart">
+                    <!-- js code -->
+                </div>
+                <div>                   
+                        <span class="totalCart" id="totalCart" colspan="7"></span>
+                </div>
+            <!-- </table> -->
+        </div>
+        <!-- div gio hang -->
         <!-- log in -->
         <div class="logIn" style="display: flex; justify-content: flex-end;">
                 <!-- <div ><button id="aboutUs" class="logInItems">About us</button></div> -->
@@ -50,7 +37,7 @@
         <nav class="row" id="logoBar" >
             <div class="menu-icon" style="padding-left: 20px;"><span class="fas fa-bars" id="menu-icon-bars"></span></div>
             <!-- <div class="col-4" > -->
-                <div id="logo" ><img src="./media/img/logo + img/logoNike.png" style="height: 20px;" alt=""></div>
+                <div id="logo" ><img src="./media/img/logo + img/basic_brand.png" style="height: 50px;" alt=""></div>
             <!-- </div> style="width: 30%;" -->
             <!-- <div class="col-8" >  style="width: 70%; display: flex;" -->
                 
@@ -140,7 +127,16 @@
                 <!-- </div> -->
         <!-- main -->
     </div>
-    <div class="footer"></div>
+    <div class="footer" style="background-color: black; height: 200px; display: flex;">
+        <div style="width: 30%;"><img src="./media/img/logo + img/basic_brand_white.png" style="width: 40%; margin: 10%;" alt=""></div>
+        <div  style="width:35%"></div>
+        <div class="contact" style="width:35%; color: white;">
+            <div style=" font-size: 24px;">Contact</div>
+            <div><i class="fa fa-envelope" style="font-size:20px; "></i> hieuminhtran050300@gmail.com</div>
+            <div><i class="fa fa-phone" style="font-size:20px"></i> 0969.907.663</div>
+            <div><i class="fa fa-thumb-tack" style="font-size:20px"></i> 22C Thanh Cong , Ba Dinh , Ha Noi</div>
+        </div>
+    </div>
 
 </body>
 <script src="./media/js/data.js"></script>
