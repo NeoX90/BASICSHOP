@@ -78,7 +78,7 @@ function soProduct(id, img, name, price)
 {
     showList.insertAdjacentHTML('beforeEnd', 
     `
-    <div class="productItem">
+    <div class="productItem" style="padding-bottom: 10px;">
       <div class ="productsImg" style = "position: relative">
         <div class="productImg0" style = "top:0; "><img src="${img[0]}" alt="" ></div>
         <div class="productImg1" style = "position: absolute ; top: 0 ; z-index :-1"><img src="${img[1]}" alt="" ></div>
@@ -86,8 +86,11 @@ function soProduct(id, img, name, price)
       <div class="productTit">
         <b style ="font-size:10px;">${name}</b>
       </div>
-      <div class="productPrice">$${price}</div>
-      <button  class="btnToCart" onclick="AddPro(${id})" >Add to cart</button>
+      <div style="display:flex">
+        <div class="productPrice" style="width:50%;">$${price}</div>
+        <div style="width:50%;"><button  class="btnToCart" style="background-color: transparent; cursor: pointer; border-radius: 3px;" onclick="AddPro(${id})" >Add to cart</button></div>
+        
+      </div>
      </div>
     `
     )
@@ -258,8 +261,10 @@ function addTable(idd, img, name, gender, number, price, cost, totalPrice){
       <div class ="boxItems">${gender}</div>
       <div class ="boxItems">Quantity :<input type="number" id="editNumber_${idd}" placeholder="${number}" value="${number}" style="border:none;outline:none"/></div>
       <div class ="boxItems">$${price}</div>
-      <div class ="boxItems">$${cost} </div>
-      <div class ="boxItems"><button class="btn_delBill" onclick="delBill()">Delete</button></div>
+      <div style="display:flex">
+        <div class ="boxItems">$${cost} </div>
+        <div class ="boxItems"><button class="btn_delBill" style="background-color: transparent; cursor: pointer; color: red; border-radius: 5px;" onclick="delBill()">Delete</button></div>
+      </div>
     </div>
     
   </div>
