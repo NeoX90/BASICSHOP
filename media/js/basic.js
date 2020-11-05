@@ -4,7 +4,7 @@ if (products == null) {
   products = JSON.parse(localStorage.getItem('productData'));
 }
 console.log(products);
-
+ 
 let arrayName = [];
 let showNike = document.getElementById('nike');
 let showAdidas = document.getElementById('adidas');
@@ -52,7 +52,6 @@ showDivs(slideIndex);
 function plusDivs(n) {
   showDivs(slideIndex += n);
 }
-
 function showDivs() {
   let i;
   let x = document.getElementsByClassName("mySlides");
@@ -68,8 +67,6 @@ function showDivs() {
   x[slideIndex-1].style.display = "block";
   setTimeout(showDivs,2000);
 }
-
-
 // show sản phẩm ra từ đầu
 function getdata(){
   showList.innerHTML = '';
@@ -96,9 +93,9 @@ function soProduct(id, img, name, price)
     )
 }
 getdata()
-
 let ProductsList = document.getElementById('ProductsList')
-function searchResult (name){console.log(name)
+function searchResult (name){
+  // console.log(name)
   ProductsList.insertAdjacentHTML('beforeEnd',
   `
       <option value="${name}" />              
@@ -116,9 +113,6 @@ function fillArr(){
   }
 }
 fillArr()
-
-
-
 // tìm kiếm theo brand + gender
 // nike
 showNike.addEventListener('click',()=>{
@@ -185,17 +179,7 @@ function getInputValue(){
   var inputVal = search_Text.value.toLowerCase();
   products = products.filter(x => x.name.toLowerCase() == inputVal);
   getdata(products);
-  // for(let i = 0 ; i < products.length ;i++){
-  //   let x = products[i].name.toLowerCase()
-  //     if(x == inputVal){
-  //       // soProduct(products[i].img, products[i].name, products[i].price);
-  //       getdata(products);
-  //       searchResult(products[i].name);
-        
-  //   }
-  // }
 }
-
 // sắp xếp theo giá 
 let sortby = document.getElementById('sortby');
 sortby.addEventListener('change', ()=>{
@@ -211,7 +195,7 @@ sortby.addEventListener('change', ()=>{
   }
 })
 //gio hang
-let listPro = JSON.parse(localStorage.getItem('listProduct'));
+let listPro;
 if (listPro == null) {
   let list = new Array();
   localStorage.setItem('listProduct', JSON.stringify(list))
@@ -221,7 +205,7 @@ if (listPro == null) {
 function AddPro(id) {
   alert('Add to cart successfully');
   for (let item of products) {
-    if (item.id == id) {
+    if (item.id === id) {
       if(!listPro.includes(item)){
         listPro.push(item);
         listPro[listPro.indexOf(item)].number = 1;
@@ -230,16 +214,17 @@ function AddPro(id) {
       }
     }
   }
-  console.log(listPro);
-  updateTable();
-  delBill()
+  console.log(listPro); 
   push(listPro);
 }
 
 function push(listPro) {
-  localStorage.setItem('listProduct', JSON.stringify(listPro))
+  localStorage.setItem('listProduct', JSON.stringify(listPro));
+  JSON.parse(localStorage.getItem('listProduct'))
+  updateTable();
+  delBill()
 } 
-
+push()
 function updateTable() {
   document.getElementById('numberCard').innerHTML = listPro.length;
   let tabbleCart = document.getElementById('tableCart');
@@ -269,12 +254,12 @@ function addTable(idd, img, name, gender, number, price, cost, totalPrice){
   <div class = 'boxProducts' style = "width : 70% ; display: flex; padding-bottom : 20px;"> 
     <div class = "BoxImg"><img height="160rem" width="160rem" src="${img}" alt="${idd}"></div>
     <div class = "infoProducts" style = "flex-direction: column;">
-      <div>${name}</div>
-      <div>${gender}</div>
-      <div>Quantity :<input type="number" id="editNumber_${idd}" placeholder="${number}" value="${number}"/></div>
-      <div>$${cost} </div>
-      <div>${price}</div>
-      <div><button class="btn_delBill" onclick="delBill()">Delete</button></div>
+      <div class ="boxItems">${name}</div>
+      <div class ="boxItems">${gender}</div>
+      <div class ="boxItems">Quantity :<input type="number" id="editNumber_${idd}" placeholder="${number}" value="${number}" style="border:none;outline:none"/></div>
+      <div class ="boxItems">$${price}</div>
+      <div class ="boxItems">$${cost} </div>
+      <div class ="boxItems"><button class="btn_delBill" onclick="delBill()">Delete</button></div>
     </div>
     
   </div>
@@ -299,4 +284,108 @@ function delBill(){
       alert('You have successfully deleted the product');
     })
   }
+}
+
+let loginForm =  document.getElementById('login_form');
+let regiterForm = document.getElementById('register_form');
+let btnLogin = document.getElementById("btn_login");
+let btnSubmit = document.getElementById("btnSubmit");
+let btnLogout = document.getElementById("btn_logout");
+let btnRegister =  document.getElementById("btn_register");
+let btnSubmitRegister = document.getElementById("btnRegister");
+let userName = document.getElementById("userName");
+let password = document.getElementById("pass");
+let userForm = document.getElementById("user_form");
+let adminForm = document.getElementById("admin_form");
+let sideName = document.getElementById('user_name');
+
+
+
+btnLogin.addEventListener("click", function(){
+    showLoginForm();
+});
+btnRegister.addEventListener("click", function(event){
+    event.preventDefault();
+    showRegisterForm();
+}); 
+btnSubmit.addEventListener("click", function(e) {
+    e.preventDefault()
+    if(userName.value == '' || password.value ==''){
+    alert("Xin mời đăng ký")
+}
+else if(password.value == localStorage.getItem(userName.value)) {
+    alert('Thành công ');
+}
+else
+    alert('Sai thông tin');
+}
+);
+
+btnRegister.addEventListener("click", function(){
+    showSignupform();
+});
+
+let userRe = document.getElementById('newuserName');
+let passRe = document.getElementById('password');
+let cfpassRe = document.getElementById('confirmPassword');
+
+btnSubmitRegister.addEventListener("click", function(){
+    if(passRe.value == cfpassRe.value) {
+        alert('ĐĂNG KÍ THÀNH CÔNG');
+        localStorage.setItem(userRe.value,passRe.value);
+    }
+    else
+        alert('Đăng kí không thành công');
+    }
+);
+
+btnLogout.addEventListener("click",function(){
+    showLoginform();
+});
+
+// function cho login và sign up
+function showLoginform(){
+    loginForm.style.display = "block";
+    btnLogin.style.display = "block";
+    cartForm.style.display = "block";
+    regiterForm.style.display = "none";
+    userForm.style.display = "none";
+    btnLogin.style.display = "none";
+}
+
+function showSignupform(){
+    regiterForm.style.display = "block";
+    loginForm.style.display = "none";
+}
+
+function showadminform(){
+    adminForm.style.display = "block";
+    loginForm.style.display = "none";
+    btnLogout.style.display = "block";
+    btnLogin.style.display = "none";
+}
+
+function showClientform(){
+    loginForm.style.display = "none";
+    btnLogin.style.display= "none";
+    userForm.style.display = "block";
+    cartForm.style.display = "block";
+    btnLogout.style.display = "block";
+}
+function showRegisterForm(){
+    in02.style.display = "block";
+    // form.style.display = "none";
+    // btnSubmitRegister.style.display= "block";
+    // userForm.style.display= "block";
+    // console.dir(loginForm.style.display)
+}
+
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }
