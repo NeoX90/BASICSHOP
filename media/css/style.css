@@ -1,9 +1,6 @@
 *{
     box-sizing: border-box;
 }
-.logIn{
-    text-align: end;
-}
 .mySlides{
     display: none;
 }
@@ -72,7 +69,6 @@ nav{
     /* background-color: black;
     color: white; */
 }
-
 
 #menuItems .silderItems{
     display: none;
@@ -205,6 +201,10 @@ nav{
     padding-bottom: 10px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+.btnToCart:hover{
+    background-color: black!important;
+    color: white;
+}
 /**/
 
 /* #ProductsList{
@@ -245,6 +245,7 @@ nav{
         /* display: none; */
         
     }
+    
     .btn_menu{
         color: white;
     }
@@ -342,7 +343,10 @@ nav{
         border-bottom-color: red;
     } */
 }
-
+.detailPro:hover {
+    color: red;
+    cursor: pointer;
+}
 
 /*css cho login*/
 /* .signUp{
@@ -449,3 +453,4 @@ span.psw{
     color:red;
     cursor: pointer;
 } */
+/*cart css*/

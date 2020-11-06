@@ -3,19 +3,18 @@ if (products == null) {
   localStorage.setItem('productData', JSON.stringify(productData));
   products = JSON.parse(localStorage.getItem('productData'));
 }
-console.log(products);
- 
+
 let arrayName = [];
 let showNike = document.getElementById('nike');
 let showAdidas = document.getElementById('adidas');
 let showBalen = document.getElementById('balenciaga');
-let showVete = document.getElementById('vetements'); 
+let showVete = document.getElementById('vetements');
 let showMen = document.getElementById('proMen');
 let showWoman = document.getElementById('proWomen');
 let showApparel = document.getElementById('apparel');
 let showShoes = document.getElementById('shoes');
 let showAccessories = document.getElementById('accessories');
-let showList= document.getElementById("showList");
+let showList = document.getElementById("showList");
 let search_Text = document.getElementById("search");
 let search_btn = document.getElementById("search-btn");
 let x = document.getElementsByClassName("silderItems");
@@ -25,13 +24,13 @@ let searchBtn = document.querySelector("#search-icon");
 let cancelBtn = document.querySelector(".cancel-icon");
 let items = document.querySelector(".menu-items")
 let form = document.querySelector("#form-search")
-menuBtn.onclick = ()=>{
+menuBtn.onclick = () => {
   items.classList.add("active");
   menuBtn.classList.add("hide");
   searchBtn.classList.add("hide");
   cancelBtn.classList.add("show");
 }
-cancelBtn.onclick = ()=>{
+cancelBtn.onclick = () => {
   items.classList.remove("active");
   menuBtn.classList.remove("hide");
   searchBtn.classList.remove("hide");
@@ -39,7 +38,7 @@ cancelBtn.onclick = ()=>{
   form.classList.remove("active1");
   // cancelBtn.style.color = "#ff3d00";
 }
-searchBtn.onclick = ()=>{
+searchBtn.onclick = () => {
   form.classList.add("active1");
   searchBtn.classList.add("hide");
   cancelBtn.classList.add("show");
@@ -47,7 +46,7 @@ searchBtn.onclick = ()=>{
 // }
 //chuyển đọng trái phải silder show + auto run
 var slideIndex = 0;
-showDivs(slideIndex); 
+showDivs(slideIndex);
 
 function plusDivs(n) {
   showDivs(slideIndex += n);
@@ -55,28 +54,27 @@ function plusDivs(n) {
 function showDivs() {
   let i;
   let x = document.getElementsByClassName("mySlides");
-  for(i = 0 ; i< x.length;i++ ){
+  for (i = 0; i < x.length; i++) {
     x[i].style.display = 'none';
   }
-  slideIndex ++;
-  if (slideIndex > x.length) {slideIndex = 1}
-  if (slideIndex < 1) {slideIndex = x.length} ;
+  slideIndex++;
+  if (slideIndex > x.length) { slideIndex = 1 }
+  if (slideIndex < 1) { slideIndex = x.length };
   for (i = 0; i < x.length; i++) {
     x[i].style.display = "none";
   }
-  x[slideIndex-1].style.display = "block";
-  setTimeout(showDivs,2000);
+  x[slideIndex - 1].style.display = "block";
+  setTimeout(showDivs, 2000);
 }
 // show sản phẩm ra từ đầu
-function getdata(){
+function getdata() {
   showList.innerHTML = '';
-  for(let i = 0 ; i < products.length ; i++){
+  for (let i = 0; i < products.length; i++) {
     soProduct(products[i].id, products[i].img, products[i].name, products[i].price);
   }
 }
-function soProduct(id, img, name, price)
-{
-    showList.insertAdjacentHTML('beforeEnd', 
+function soProduct(id, img, name, price) {
+  showList.insertAdjacentHTML('beforeEnd',
     `
     <div class="productItem" style="padding-bottom: 10px;">
       <div class ="productsImg" style = "position: relative">
@@ -84,100 +82,100 @@ function soProduct(id, img, name, price)
         <div class="productImg1" style = "position: absolute ; top: 0 ; z-index :-1"><img src="${img[1]}" alt="" ></div>
       </div>
       <div class="productTit">
-        <b style ="font-size:10px;">${name}</b>
+        <b class="detailPro" style ="font-size:10px;" onclick="detailPro(${id})">${name}</b>
       </div>
       <div style="display:flex">
         <div class="productPrice" style="width:50%;">$${price}</div>
-        <div style="width:50%;"><button  class="btnToCart" style="background-color: transparent; cursor: pointer; border-radius: 3px;" onclick="AddPro(${id})" >Add to cart</button></div>
+        <div style="width:50%; text-align: end;"><button  class="btnToCart" style="background-color: transparent; cursor: pointer; border-radius: 3px; " onclick="AddPro(${id})" >Add to cart</button></div>
         
       </div>
      </div>
     `
-    )
+  )
 }
 getdata()
 let ProductsList = document.getElementById('ProductsList')
-function searchResult (name){
+function searchResult(name) {
   // console.log(name)
   ProductsList.insertAdjacentHTML('beforeEnd',
-  `
+    `
       <option value="${name}" />              
   `
   )
 }
 // tên tìm kiếm
-function fillArr(){
-  for( let i = 0 ; i <products.length;i++){
+function fillArr() {
+  for (let i = 0; i < products.length; i++) {
     arrayName.push(products[i].name.toLowerCase())
   }
   // console.log(arrayName)
-  for(let i = 0 ; i < products.length; i++){
+  for (let i = 0; i < products.length; i++) {
     searchResult(products[i].name)
   }
 }
 fillArr()
 // tìm kiếm theo brand + gender
 // nike
-showNike.addEventListener('click',()=>{
+showNike.addEventListener('click', () => {
   products = JSON.parse(localStorage.getItem('productData'));
   products = products.filter(x => x.brand == 'Nike');
   getdata(products);
 })
 // adidas
-showAdidas.addEventListener('click',()=>{
+showAdidas.addEventListener('click', () => {
   products = JSON.parse(localStorage.getItem('productData'));
   products = products.filter(x => x.brand == 'adidas');
   getdata(products);
 })
 // balenciaga
-showBalen.addEventListener('click',()=>{
+showBalen.addEventListener('click', () => {
   products = JSON.parse(localStorage.getItem('productData'));
   products = products.filter(x => x.brand == 'balenciaga');
   getdata(products);
 })
 // vetements
-showVete.addEventListener('click',()=>{
+showVete.addEventListener('click', () => {
   products = JSON.parse(localStorage.getItem('productData'));
   products = products.filter(x => x.brand == 'VETEMENTS');
   getdata(products);
 })
 // show products for men
-showMen.addEventListener('click',()=>{
+showMen.addEventListener('click', () => {
   products = JSON.parse(localStorage.getItem('productData'));
-  let product1 = products.filter(x => x.gender.length == 2 );
+  let product1 = products.filter(x => x.gender.length == 2);
   let product2 = products.filter(x => x.gender == 'male');
   products = product1.concat(product2);
   getdata(products)
 })
 // show products for women
-showWoman.addEventListener('click',()=>{
+showWoman.addEventListener('click', () => {
   products = JSON.parse(localStorage.getItem('productData'));
-  let product1 = products.filter(x => x.gender.length == 2 );
+  let product1 = products.filter(x => x.gender.length == 2);
   let product2 = products.filter(x => x.gender == 'female');
   products = product1.concat(product2);
   console.log(products);
   getdata(products)
 })
 
-showApparel.addEventListener('click',()=>{
+showApparel.addEventListener('click', () => {
   products = JSON.parse(localStorage.getItem('productData'));
   products = products.filter(x => x.category == 'apparel');
   getdata(products);
 })
-showShoes.addEventListener('click',()=>{
+showShoes.addEventListener('click', () => {
   products = JSON.parse(localStorage.getItem('productData'));
   products = products.filter(x => x.category == 'shoes');
   getdata(products);
 })
-showAccessories.addEventListener('click',()=>{
+showAccessories.addEventListener('click', () => {
   products = JSON.parse(localStorage.getItem('productData'));
   products = products.filter(x => x.category == 'accessories');
   getdata(products);
 })
 // tìm kiếm theo tên
 
-function getInputValue(){
-  showList.innerHTML ='';
+function getInputValue() {
+  showList.innerHTML = '';
   products = JSON.parse(localStorage.getItem('productData'));
   var inputVal = search_Text.value.toLowerCase();
   products = products.filter(x => x.name.toLowerCase() == inputVal);
@@ -185,49 +183,36 @@ function getInputValue(){
 }
 // sắp xếp theo giá 
 let sortby = document.getElementById('sortby');
-sortby.addEventListener('change', ()=>{
+sortby.addEventListener('change', () => {
   products = JSON.parse(localStorage.getItem('productData'));
-  if(sortby.value == 'low') {
-    products.sort(function(a, b) {return a.price - b.price});
+  if (sortby.value == 'low') {
+    products.sort(function (a, b) { return a.price - b.price });
     getdata(products);
-  }else if (sortby.value == 'high') {
-    products.sort(function(a, b) {return b.price - a.price});
+  } else if (sortby.value == 'high') {
+    products.sort(function (a, b) { return b.price - a.price });
     getdata(products);
-  }else{
+  } else {
     getdata(products);
   }
 })
 //gio hang
-let listPro;
-if (listPro == null) {
-  let list = new Array();
-  localStorage.setItem('listProduct', JSON.stringify(list))
-  listPro = JSON.parse(localStorage.getItem('listProduct'))
-}
-
+let listPro = new Array;
 function AddPro(id) {
   alert('Add to cart successfully');
   for (let item of products) {
     if (item.id === id) {
-      if(!listPro.includes(item)){
+      if (!listPro.includes(item)) {
         listPro.push(item);
         listPro[listPro.indexOf(item)].number = 1;
-      }else {
+      } else {
         listPro[listPro.indexOf(item)].number++
       }
     }
   }
-  console.log(listPro); 
-  push(listPro);
-}
-
-function push(listPro) {
-  localStorage.setItem('listProduct', JSON.stringify(listPro));
-  JSON.parse(localStorage.getItem('listProduct'))
+  console.log(listPro);
   updateTable();
   delBill()
-} 
-push()
+}
 function updateTable() {
   document.getElementById('numberCard').innerHTML = listPro.length;
   let tabbleCart = document.getElementById('tableCart');
@@ -239,21 +224,21 @@ function updateTable() {
     name = item.name;
     if (item.gender.length == 2) {
       gender = 'unisex';
-    }else {
+    } else {
       gender = item.gender[0];
     }
     number = item.number;
     price = item.price;
-    cost = price*number;
-    totalPrice += price*number;
+    cost = price * number;
+    totalPrice += price * number;
     addTable(idd, img, name, gender, number, price, cost, totalPrice)
   }
 }
-function addTable(idd, img, name, gender, number, price, cost, totalPrice){
+function addTable(idd, img, name, gender, number, price, cost, totalPrice) {
   let totalCart = document.getElementById('totalCart');
   let tabbleCart = document.getElementById('tableCart');
   tabbleCart.insertAdjacentHTML('beforeend',
-`
+    `
   <div class = 'boxProducts' style = "width : 70% ; display: flex; padding-bottom : 20px;"> 
     <div class = "BoxImg"><img height="160rem" width="160rem" src="${img}" alt="${idd}"></div>
     <div class = "infoProducts" style = "flex-direction: column;">
@@ -269,9 +254,9 @@ function addTable(idd, img, name, gender, number, price, cost, totalPrice){
     
   </div>
   `)
-  totalCart.innerHTML = 'Subtotal :  $'+totalPrice;
+  totalCart.innerHTML = 'Subtotal :  $' + totalPrice;
   let editNumber = document.getElementById(`editNumber_${idd}`);
-  editNumber.addEventListener('change',()=>{
+  editNumber.addEventListener('change', () => {
     for (item of listPro) {
       if (item.id == idd) {
         listPro[listPro.indexOf(item)].number = editNumber.value;
@@ -280,10 +265,10 @@ function addTable(idd, img, name, gender, number, price, cost, totalPrice){
     }
   })
 }
-function delBill(){
+function delBill() {
   let btn_delBill = document.getElementsByClassName('btn_delBill');
-  for (let i=0; i<listPro.length; i++){
-    btn_delBill[i].addEventListener('click', ()=>{
+  for (let i = 0; i < listPro.length; i++) {
+    btn_delBill[i].addEventListener('click', () => {
       listPro.splice(i, 1);
       updateTable();
       alert('You have successfully deleted the product');
@@ -291,12 +276,12 @@ function delBill(){
   }
 }
 
-let loginForm =  document.getElementById('login_form');
+let loginForm = document.getElementById('login_form');
 let regiterForm = document.getElementById('register_form');
 let btnLogin = document.getElementById("btn_login");
 let btnSubmit = document.getElementById("btnSubmit");
 let btnLogout = document.getElementById("btn_logout");
-let btnRegister =  document.getElementById("btn_register");
+let btnRegister = document.getElementById("btn_register");
 let btnSubmitRegister = document.getElementById("btnRegister");
 let userName = document.getElementById("userName");
 let password = document.getElementById("pass");
@@ -306,91 +291,192 @@ let sideName = document.getElementById('user_name');
 
 
 
-btnLogin.addEventListener("click", function(){
-    showLoginForm();
-});
-btnRegister.addEventListener("click", function(event){
-    event.preventDefault();
-    showRegisterForm();
-}); 
-btnSubmit.addEventListener("click", function(e) {
-    e.preventDefault()
-    if(userName.value == '' || password.value ==''){
-    alert("Xin mời đăng ký")
-}
-else if(password.value == localStorage.getItem(userName.value)) {
-    alert('Thành công ');
-}
-else
-    alert('Sai thông tin');
-}
-);
-
-btnRegister.addEventListener("click", function(){
-    showSignupform();
-});
-
-let userRe = document.getElementById('newuserName');
-let passRe = document.getElementById('password');
-let cfpassRe = document.getElementById('confirmPassword');
-
-btnSubmitRegister.addEventListener("click", function(){
-    if(passRe.value == cfpassRe.value) {
-        alert('ĐĂNG KÍ THÀNH CÔNG');
-        localStorage.setItem(userRe.value,passRe.value);
-    }
-    else
-        alert('Đăng kí không thành công');
-    }
-);
-
-btnLogout.addEventListener("click",function(){
-    showLoginform();
-});
-
-// function cho login và sign up
-function showLoginform(){
-    loginForm.style.display = "block";
-    btnLogin.style.display = "block";
-    cartForm.style.display = "block";
-    regiterForm.style.display = "none";
-    userForm.style.display = "none";
-    btnLogin.style.display = "none";
-}
-
-function showSignupform(){
-    regiterForm.style.display = "block";
-    loginForm.style.display = "none";
-}
-
-function showadminform(){
-    adminForm.style.display = "block";
-    loginForm.style.display = "none";
-    btnLogout.style.display = "block";
-    btnLogin.style.display = "none";
-}
-
-function showClientform(){
-    loginForm.style.display = "none";
-    btnLogin.style.display= "none";
-    userForm.style.display = "block";
-    cartForm.style.display = "block";
-    btnLogout.style.display = "block";
-}
-function showRegisterForm(){
-    in02.style.display = "block";
-    // form.style.display = "none";
-    // btnSubmitRegister.style.display= "block";
-    // userForm.style.display= "block";
-    // console.dir(loginForm.style.display)
-}
 
 // Get the modal
 var modal = document.getElementById('id01');
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+//popupShopcart
+let shopCart = document.getElementById('btn_shopCart')
+let tableCart = document.getElementById('tableCart')
+let Cart
+// shopCart.addEventListener("click", =>() {
+//     tableCart.style.display = 'block'
+// })
+
+//Them xua xoa sp
+let idPro = document.getElementById('idPro');
+let catPro = document.getElementById('catPro');
+let namePro = document.getElementById('namePro');
+let brandPro = document.getElementById('brandPro');
+let sizePro = document.getElementById('sizePro');
+let colorPro = document.getElementById('colorPro');
+let genderPro = document.getElementById('genderPro');
+let pricePro = document.getElementById('pricePro');
+let imgPro = document.getElementById('imgPro');
+let desPro = document.getElementById('desPro');
+let typePro = document.getElementById('typePro');
+let MaTable = document.getElementById('MaTable');
+
+let btn_add = document.getElementById('btn_add');
+let btn_clear = document.getElementById('btn_clear');
+
+let update_num = 0;
+let update_state = false;
+
+function loadTable() {
+  MaTable.innerHTML = '';
+  for (let item of products) {
+    let id = item.id;
+    let category = item.category;
+    let name = item.name;
+    let brand = item.brand;
+    let size = item.size;
+    let color = item.color;
+    let gender = item.gender;
+    let price = item.price
+    let img = item.img;
+    let description = item.description;
+    let productType = item.productType;
+    MaTable.insertAdjacentHTML('beforeend', `
+  <tr>
+    <td>${id}</td>
+    <td>${category}</td>
+    <td>${name}</td>
+    <td>${brand}</td>
+    <td>${size}</td>
+    <td>${color}</td>
+    <td>${gender}</td>
+    <td>${price}</td>
+    <td>${img.join('</br>')}</td>
+    <td>${description}</td>
+    <td>${productType}</td>
+    <td>
+      <button class="editPro">Edit</button>
+      <button class="deletePro">Delete</button>
+    </td>
+  </tr>
+  `)
+  }
+  const deletePro = document.getElementsByClassName('deletePro');
+  const editPro = document.getElementsByClassName('editPro');
+  for (let i = 0; i < deletePro.length; i++) {
+    deletePro[i].addEventListener('click', () => {
+      products.splice(i, 1);
+      loadTable();
+    })
+  }
+  for (let i = 0; i < editPro.length; i++) {
+    editPro[i].addEventListener('click', () => {
+      idPro.value = products[i].id;
+      catPro.value = products[i].category;
+      namePro.value = products[i].name;
+      brandPro.value = products[i].brand;
+      sizePro.value = products[i].size;
+      colorPro.value = products[i].color;
+      genderPro.value = products[i].gender;
+      pricePro.value = products[i].price;
+      imgPro.value = products[i].img;
+      desPro.value = products[i].description;
+      typePro.value = products[i].productType;
+      update_state = true;
+      update_num = i;
+    })
+  }
+}
+loadTable()
+btn_add.addEventListener('click', () => {
+  if (idPro.value.value == '' || namePro.value == '' || pricePro.value == '') {
+    alert('dont leave stuff blank')
+  } else if (update_state) {
+    products[update_num] = {
+      id: idPro.value,
+      category: catPro.value,
+      name: namePro.value,
+      brand: brandPro.value,
+      size: sizePro.value.split(','),
+      color: colorPro.value.split(','),
+      gender: genderPro.value.split(','),
+      price: pricePro.value,
+      img: imgPro.value.split(','),
+      description: desPro.value,
+      productType: typePro.value,
+    };
+    update_state = false;
+    loadTable();
+    idPro.value = ''
+    catPro.value = ''
+    namePro.value = ''
+    brandPro.value = ''
+    sizePro.value = ''
+    colorPro.value = ''
+    genderPro.value = ''
+    pricePro.value = ''
+    imgPro.value = ''
+    desPro.value = ''
+    typePro.value = ''
+  } else {
+    products.push({
+      id: idPro.value,
+      category: catPro.value,
+      name: namePro.value,
+      brand: brandPro.value,
+      size: sizePro.value.split(','),
+      color: colorPro.value.split(','),
+      gender: genderPro.value.split(','),
+      price: pricePro.value,
+      img: imgPro.value.split(','),
+      description: desPro.value,
+      productType: typePro.value,
+    });
+    loadTable();
+    idPro.value = '';catPro.value = '';namePro.value = '';brandPro.value = '';sizePro.value = '';colorPro.value = '';genderPro.value = '';pricePro.value = '';imgPro.value = '';desPro.value = '';typePro.value = '';
+  };
+});
+btn_clear.addEventListener('click', () => {
+  idPro.value = '';catPro.value = '';namePro.value = '';brandPro.value = '';sizePro.value = '';colorPro.value = '';genderPro.value = '';pricePro.value = '';imgPro.value = '';desPro.value = '';typePro.value = '';
+  update_state = false;
+})
+
+//detail Product
+let show_detail = document.getElementById('show_detail');
+function detailPro(id) {
+  let found = products.find(x => x.id == id)
+  show_detail.innerHTML = '';
+  let gender;
+  if (found.gender.length == 2){
+    gender = 'Unisex'
+  }else{
+    gender = found.gender[0].charAt(0).toUpperCase() + found.gender[0].slice(1);
+  }
+  show_detail.insertAdjacentHTML('beforeend', `
+  <div class="detail_Pro">
+    <div class="detail_pic"> 
+      <img src="${found.img[0]}" alt="img1"/>
+      <img src="${found.img[1]}" alt="img2"/>
+    </div>
+    <div class="detail_all">
+      <p>${gender}'s ${found.productType}</p>
+      <h1>${found.name}</h1>
+      <div>$${found.price}</div>
+      <p>${found.brand}</h1>
+      <div id="selectsize"><div>Select size:</div>
+        
+      </div>
+      <button class="btn" onclick="AddProduct(${id})">Add to bags</button>
+      <div>${found.description}</div>
+    </div>
+  </div>
+  `);
+  let selectsize = document.getElementById('selectsize');
+  let arr = found.size;
+  for (item of arr){
+    selectsize.insertAdjacentHTML('beforeend', `<input type="radio" name="Size"><label>${item}</label><br>`)
+  }
 }
