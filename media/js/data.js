@@ -548,11 +548,11 @@ const productData = [
     }, 
 ],
 // tk user + admin
-user =[
+userData =[
     {
         email : 'admin123@gmail.com',
         userName : 'admin dep trai',
-        password : 'Anh213210',
+        password : '123',
         role: 'admin'
     },
     {

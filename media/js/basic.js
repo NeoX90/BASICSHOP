@@ -3,7 +3,13 @@ if (products == null) {
   localStorage.setItem('productData', JSON.stringify(productData));
   products = JSON.parse(localStorage.getItem('productData'));
 }
-
+let user = JSON.parse(localStorage.getItem('userData'));
+if (user == null) {
+  localStorage.setItem('userData', JSON.stringify(userData));
+  user = JSON.parse(localStorage.getItem('userData'));
+}
+let suaxoa = document.getElementById('suaxoa');
+let nutsuaxoa = document.getElementById('nutsuaxoa')
 let arrayName = [];
 let showNike = document.getElementById('nike');
 let showAdidas = document.getElementById('adidas');
@@ -18,6 +24,7 @@ let showList = document.getElementById("showList");
 let search_Text = document.getElementById("search");
 let search_btn = document.getElementById("search-btn");
 let x = document.getElementsByClassName("silderItems");
+let shopCartIcons = document.getElementById('shopCart');
 // responsive menu
 let menuBtn = document.querySelector(".menu-icon #menu-icon-bars")
 let searchBtn = document.querySelector("#search-icon");
@@ -86,7 +93,7 @@ function soProduct(id, img, name, price) {
       </div>
       <div style="display:flex">
         <div class="productPrice" style="width:50%;">$${price}</div>
-        <div style="width:50%; text-align: end;"><button  class="btnToCart" style="background-color: transparent; cursor: pointer; border-radius: 3px; " onclick="AddPro(${id})" >Add to cart</button></div>
+        <div style="width:50%; text-align: end;"><button  class="btnToCart" style="background-color: transparent; cursor: pointer; border:none; " onclick="AddPro(${id})" ><i class='fas fa-shopping-basket' ></i></button></div>
         
       </div>
      </div>
@@ -196,6 +203,19 @@ sortby.addEventListener('change', () => {
   }
 })
 //gio hang
+let numberCard = document.getElementById('numberCard');
+let tabbleCart = document.getElementById('tableCart');
+let checkout = document.getElementById('checkout');
+let BoxCart = document.getElementById('BoxCart');
+let nutx = document.getElementById('nutx');
+BoxCart.style.display = 'none';
+checkout.style.display = 'none';
+numberCard.addEventListener('click', ()=>{
+  BoxCart.style.display = 'block';
+})
+nutx.addEventListener('click', ()=>{
+  BoxCart.style.display = 'none';
+})
 let listPro = new Array;
 function AddPro(id) {
   alert('Add to cart successfully');
@@ -215,7 +235,6 @@ function AddPro(id) {
 }
 function updateTable() {
   document.getElementById('numberCard').innerHTML = listPro.length;
-  let tabbleCart = document.getElementById('tableCart');
   tabbleCart.innerHTML = '';
   let cost = 0; totalPrice = 0;
   for (let item of listPro) {
@@ -260,57 +279,46 @@ function addTable(idd, img, name, gender, number, price, cost, totalPrice) {
     for (item of listPro) {
       if (item.id == idd) {
         listPro[listPro.indexOf(item)].number = editNumber.value;
-        updateTable();
+        updateTable(listPro);
       }
     }
   })
+  checkout.style.display = 'block';
 }
 function delBill() {
   let btn_delBill = document.getElementsByClassName('btn_delBill');
   for (let i = 0; i < listPro.length; i++) {
     btn_delBill[i].addEventListener('click', () => {
       listPro.splice(i, 1);
+      if (listPro.length == 0){
+        checkout.style.display = 'none';
+      }
       updateTable();
       alert('You have successfully deleted the product');
     })
   }
 }
-
-let loginForm = document.getElementById('login_form');
-let regiterForm = document.getElementById('register_form');
-let btnLogin = document.getElementById("btn_login");
-let btnSubmit = document.getElementById("btnSubmit");
-let btnLogout = document.getElementById("btn_logout");
-let btnRegister = document.getElementById("btn_register");
-let btnSubmitRegister = document.getElementById("btnRegister");
-let userName = document.getElementById("userName");
-let password = document.getElementById("pass");
-let userForm = document.getElementById("user_form");
-let adminForm = document.getElementById("admin_form");
-let sideName = document.getElementById('user_name');
-
-
-
-
-// Get the modal
-var modal = document.getElementById('id01');
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
+checkout.addEventListener('click', () => {
+  checkout.style.display = 'none';
+  tabbleCart.innerHTML = '';
+  totalCart.innerHTML = '';
+  alert('Payment success');
+})
 
 //popupShopcart
 let shopCart = document.getElementById('btn_shopCart')
 let tableCart = document.getElementById('tableCart')
-let Cart
 // shopCart.addEventListener("click", =>() {
 //     tableCart.style.display = 'block'
 // })
+// let BoxCart = document.getElementsByClassName('BoxCart');
+// shopCartIcons.onclick = function(event){
+//   BoxCart.style.display = "block";
 
+
+// }
 //Them xua xoa sp
+// let shopCart = document.getElementById('shopCart');
 let idPro = document.getElementById('idPro');
 let catPro = document.getElementById('catPro');
 let namePro = document.getElementById('namePro');
@@ -330,8 +338,13 @@ let btn_clear = document.getElementById('btn_clear');
 let update_num = 0;
 let update_state = false;
 
+
+
+
+
 function loadTable() {
   MaTable.innerHTML = '';
+  let products = JSON.parse(localStorage.getItem('productData'));
   for (let item of products) {
     let id = item.id;
     let category = item.category;
@@ -369,6 +382,7 @@ function loadTable() {
   for (let i = 0; i < deletePro.length; i++) {
     deletePro[i].addEventListener('click', () => {
       products.splice(i, 1);
+      localStorage.setItem('productData', JSON.stringify(products));
       loadTable();
     })
   }
@@ -409,6 +423,7 @@ btn_add.addEventListener('click', () => {
       productType: typePro.value,
     };
     update_state = false;
+    localStorage.setItem('productData', JSON.stringify(products));
     loadTable();
     idPro.value = ''
     catPro.value = ''
@@ -435,12 +450,13 @@ btn_add.addEventListener('click', () => {
       description: desPro.value,
       productType: typePro.value,
     });
+    localStorage.setItem('productData', JSON.stringify(products));
     loadTable();
-    idPro.value = '';catPro.value = '';namePro.value = '';brandPro.value = '';sizePro.value = '';colorPro.value = '';genderPro.value = '';pricePro.value = '';imgPro.value = '';desPro.value = '';typePro.value = '';
+    idPro.value = ''; catPro.value = ''; namePro.value = ''; brandPro.value = ''; sizePro.value = ''; colorPro.value = ''; genderPro.value = ''; pricePro.value = ''; imgPro.value = ''; desPro.value = ''; typePro.value = '';
   };
 });
 btn_clear.addEventListener('click', () => {
-  idPro.value = '';catPro.value = '';namePro.value = '';brandPro.value = '';sizePro.value = '';colorPro.value = '';genderPro.value = '';pricePro.value = '';imgPro.value = '';desPro.value = '';typePro.value = '';
+  idPro.value = ''; catPro.value = ''; namePro.value = ''; brandPro.value = ''; sizePro.value = ''; colorPro.value = ''; genderPro.value = ''; pricePro.value = ''; imgPro.value = ''; desPro.value = ''; typePro.value = '';
   update_state = false;
 })
 
@@ -450,33 +466,38 @@ function detailPro(id) {
   let found = products.find(x => x.id == id)
   show_detail.innerHTML = '';
   let gender;
-  if (found.gender.length == 2){
+  if (found.gender.length == 2) {
     gender = 'Unisex'
-  }else{
+  } else {
     gender = found.gender[0].charAt(0).toUpperCase() + found.gender[0].slice(1);
   }
   show_detail.insertAdjacentHTML('beforeend', `
-  <div class="detail_Pro">
-    <div class="detail_pic"> 
-      <img src="${found.img[0]}" alt="img1"/>
-      <img src="${found.img[1]}" alt="img2"/>
+  <div style="text-align: center; font-size: 32px">Infor Products</div>
+  <div class="detail_Pro" style="display:flex;">
+    <div class="detail_pic" style="width:50% ; display:flex;"> 
+      <div style="width:50% ; padding-right:10px;" ><img src="${found.img[0]}" alt="img1" style="width:100%"/></div>
+      <div style="width:50% ; padding-right:10px;"><img src="${found.img[1]}" alt="img2" style="width:100%"/></div>
     </div>
-    <div class="detail_all">
+    <div class="detail_all" style="width:50%; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
       <p>${gender}'s ${found.productType}</p>
       <h1>${found.name}</h1>
       <div>$${found.price}</div>
       <p>${found.brand}</h1>
-      <div id="selectsize"><div>Select size:</div>
+      <div id="selectsize" ><div>Select size:</div>
         
       </div>
-      <button class="btn" onclick="AddProduct(${id})">Add to bags</button>
       <div>${found.description}</div>
+      <div>
+        <!-- <button class="btn" onclick="AddProduct(${id})">Add to bags</button> -->
+        <a href="./index.html"><button class="btn" >X</button></a>
+        
+      </div>
     </div>
   </div>
   `);
   let selectsize = document.getElementById('selectsize');
   let arr = found.size;
-  for (item of arr){
+  for (item of arr) {
     selectsize.insertAdjacentHTML('beforeend', `<input type="radio" name="Size"><label>${item}</label><br>`)
   }
 }

@@ -92,6 +92,7 @@ span.psw{
     width: 20%;
 }
 .close{
+    
     position: absolute;
     right: 25px;
     top: 0;
@@ -105,7 +106,6 @@ span.psw{
 }
 #user_name{
     color: black;
-    width: 75px;
     height: 29px;
     margin-bottom: 0px;
     padding-left: 0px;

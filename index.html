@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,106 +8,154 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./media/css/style.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-    <title>BASIC SHOP</title>
+    <link rel="stylesheet" href="./media/css/index.css">
     <link rel="icon" href="./media/img/logo + img/basic_brand.png">
+    <title>BASIC SHOP</title>
 </head>
 <body>
-    
+    <!-- Them sua xoa sp -->
+    <div id="suaxoa" style="overflow-x: scroll ; display: none;">
+        <div id="nutsuaxoa" style="font-weight: bold; font-size: 2rem;">X</div>
+        <input type="number" id="idPro" placeholder="id">
+        <input type="text" id="catPro" placeholder="category">
+        <input type="text" id="namePro" placeholder="name">
+        <input type="text" id="brandPro" placeholder="brand">
+        <input type="text" id="sizePro" placeholder="size">
+        <input type="text" id="colorPro" placeholder="color">
+        <input type="text" id="genderPro" placeholder="gender">
+        <input type="number" id="pricePro" placeholder="price">
+        <input type="text" id="imgPro" placeholder="img">
+        <input type="text" id="desPro" placeholder="description">
+        <input type="text" id="typePro" placeholder="productType">
+        <button id="btn_add">Add</button>
+        <button id="btn_clear">Clear</button>
+       <div class="TlistPro"> 
+           <table>
+            <thead>
+                <th>Id</th>
+                <th>Category</th>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>Size</th>
+                <th>Color</th>
+                <th>Gender</th>
+                <th>Price</th>
+                <th>Img</th>
+                <th>Description</th>
+                <th>ProductType</th>
+                <th>Edit</th>
+            </thead>
+            <tbody id="MaTable" >
+
+             </tbody>
+           </table>
+        </div>
+    </div>
+    <!-- Detail Product -->
+    <!-- <h1>Detail Product</h1> -->
+    <div id="show_detail" >
     <!-- header -->
     <div class="container">
-        <!-- div gio hang  -->
-        <div style="display: flex;">
+        <div id="BoxCart" class="BoxCart">
+            <div id="nutx" style="font-weight: bold; font-size: 2rem;">X</div>
+            <div  style="display: flex;">
                 <div id="tableCart" style="width: 70%; ">
                     <!-- js code -->
                 </div>
                 <div style="width: 30%; border-left: 1px solid black; padding-left: 10px;">                  
-                        <span class="totalCart" id="totalCart" colspan="7"></span>
+                        <div class="totalCart" id="totalCart" colspan="7"></div>
+                        <button id="checkout">Checkout</button>
                 </div>
             <!-- </table> -->
+            </div>
         </div>
+        
+        <!-- div gio hang  -->
+
         <!-- div gio hang -->
         <!-- log in -->
         <div class="logIn" style="display: flex; justify-content: flex-end;">
-                <!-- <div ><button id="aboutUs" class="logInItems">About us</button></div> -->
-                <div >
-                    <!-- <button id="signIn" class="logInItems">Sign In</button> -->
-                    <!-- <button class="btn-log" id="btn_login" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" border-radius:5px>Login</button>
-<span>
-  <p id="user_name"></p>
-</span>
-<button class="btn-log" id="btn_logout"onclick="document.getElementById('id02').style.display='block'" style="width: auto;" border-radius:5px >Logout</button>
-
-<div id="id01" class="modal">
-  
-  <form class="modal-content animate" id='form' action="">
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='block'" class="close" title="Close Modal">&times;</span>
-      <img src="https://scontent-xsp1-1.xx.fbcdn.net/v/t1.0-9/119107466_1886337731508624_8155876459188839522_o.jpg?_nc_cat=108&ccb=2&_nc_sid=09cbfe&_nc_ohc=6eB6f7DbQdIAX9jl470&_nc_ht=scontent-xsp1-1.xx&oh=0019c7dd562158a215f9627f9627a888&oe=5FBE01C6" alt="Avatar" class="avatar">
+            <!-- <div ><button id="aboutUs" class="logInItems">About us</button></div> -->
+            <div >
+                <!-- <button id="signIn" class="logInItems">Sign In</button> -->
+                <body >
+                    <button class="btn-log" id="btn_login" onclick="document.getElementById('id01').style.display='block'" style="width:auto; "style=' border-radius:5px;' style="margin-left: 95%;">Login</button>
+                    <span>
+                      <p class= "user_name" id="user_name"></p>
+                    </span>
+                    <button class="btn-log" id="btn_logout"onclick="document.getElementById('id02').style.display='block'" style="width: auto;" border-radius:5px >Logout</button>
+                    <button class="btn-log" id="btn_admin">Admin</button>
+                    <div id="id01" class="modal">
+                      
+                      <form class="modal-content animate" id='form' action="">
+                        <div class="imgcontainer">
+                          <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                          <img src="https://scontent-xsp1-1.xx.fbcdn.net/v/t1.0-9/119107466_1886337731508624_8155876459188839522_o.jpg?_nc_cat=108&ccb=2&_nc_sid=09cbfe&_nc_ohc=6eB6f7DbQdIAX9jl470&_nc_ht=scontent-xsp1-1.xx&oh=0019c7dd562158a215f9627f9627a888&oe=5FBE01C6" alt="Avatar" class="avatar">
+                        </div>
+                    
+                        <div class="container1">
+                            <div class="logIn" id="login_form">
+                                <div>
+                                    <label for="username">Tên Đăng Nhập:</label>
+                                    <input class="form-control" type="text" id="userName">
+                                </div>
+                                <div>
+                                    <label for="pwd">Mật Khẩu:</label>
+                                    <input class="form-control" type="password" id="pass">
+                                </div>
+                                <div class="btn_login">
+                                    <button type="submit" class="btn_submit" id="btnSubmit">Đăng Nhập</button>
+                                    <button class="btn_submit" id="btn_register">Đăng Ký</button>
+                                </div>
+                                <label>
+                                  <input type="checkbox" checked="checked" name="Remember">Remember me
+                                </label>
+                        </div>
+                    
+                        <div class="container1" style="background-color:#f1f1f1">
+                          <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                        </div>
+                      </form>
+                    </div>
+                    
+                    <div id="in02" class="modal">
+                        <form class="modal-content animate" action="">
+                            <div class="imgcontainer">
+                              <span onclick="document.getElementById('id02').style.display='block'" class="close" title="Close Modal"></span>
+                              <img src="https://scontent-xsp1-1.xx.fbcdn.net/v/t1.0-9/119107466_1886337731508624_8155876459188839522_o.jpg?_nc_cat=108&ccb=2&_nc_sid=09cbfe&_nc_ohc=6eB6f7DbQdIAX9jl470&_nc_ht=scontent-xsp1-1.xx&oh=0019c7dd562158a215f9627f9627a888&oe=5FBE01C6" alt="Avatar" class="avatar">
+                            </div>
+                    
+                            <div class="container1">
+                                
+                            <div class="signUp" id="register_form">
+                                <div>
+                                    <label for="username">Tên Đăng Nhập:</label>
+                                    <input type="text" class="form-control" id="newuserName">
+                                </div>
+                                <div>
+                                    <label for="pass">Mật Khẩu:</label>
+                                    <input type="password" class="form-control" id="password">
+                                </div>
+                                <div>
+                                    <label for="pass2">Nhập Lại Mật Khẩu:</label>
+                                    <input type="password" class="form-control" id="confirmPassword">
+                                </div>
+                                <div class="btn_login">
+                                    <button class="btn_submit" type="submit" id="btnRegister">Đăng Ký</button>
+                                </div>
+                                <label>
+                                  <input type="checkbox" checked="checked" name="Remember">Remember me
+                                </label>
+                                <div class="container" style="background-color:#f1f1f1">
+                                  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                                </div>
+                            </div>
+                    </div>
+                
+            </div>
     </div>
-
-    <div class="containerlogin">
-        <div class="logIn" id="login_form">
-            <div>
-                <label for="username">Tên Đăng Nhập:</label>
-                <input class="form-control" type="text" id="userName" style="padding-right: 60px;;">
-            </div>
-            <div>
-                <label for="pwd">Mật Khẩu:</label>
-                <input class="form-control" type="password" id="pass">
-            </div>
-            <div class="btn_login">
-                <button type="submit" class="btn_submit" id="btnSubmit">Đăng Nhập</button>
-                <button class="btn_submit" id="btn_register">Đăng Ký</button>
-            </div>
-            <label>
-              <input type="checkbox" checked="checked" name="Remember">Remember me
-            </label>
-    </div>
-
-    <div class="containerlogin" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id01').style.display='block'" class="cancelbtn">Cancel</button>
-    </div>
-  </form>
-</div>
-
-<div id="in02" class="modal">
-    <form class="modal-content animate" action="">
-        <div class="imgcontainer">
-          <span onclick="document.getElementById('id02').style.display='block'" class="close" title="Close Modal"></span>
-          <img src="https://scontent-xsp1-1.xx.fbcdn.net/v/t1.0-9/119107466_1886337731508624_8155876459188839522_o.jpg?_nc_cat=108&ccb=2&_nc_sid=09cbfe&_nc_ohc=6eB6f7DbQdIAX9jl470&_nc_ht=scontent-xsp1-1.xx&oh=0019c7dd562158a215f9627f9627a888&oe=5FBE01C6" alt="Avatar" class="avatar">
-        </div>
-
-        <div class="containerlogin">
-            
-        <div class="signUp" id="register_form">
-            <div>
-                <label for="username">Tên Đăng Nhập:</label>
-                <input type="text" class="form-control" id="newuserName">
-            </div>
-            <div>
-                <label for="pass">Mật Khẩu:</label>
-                <input type="password" class="form-control" id="password">
-            </div>
-            <div>
-                <label for="pass2">Nhập Lại Mật Khẩu:</label>
-                <input type="password" class="form-control" id="confirmPassword">
-            </div>
-            <div class="btn_login">
-                <button class="btn_submit" type="submit" id="btnRegister">Đăng Ký</button>
-            </div>
-            <label>
-              <input type="checkbox" checked="checked" name="Remember">Remember me
-            </label>
-            <div class="containerlogin" style="background-color:#f1f1f1">
-              <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-            </div>
-        </div>
-</div>
-                     -->
-                </div>
-        </div>
-        <!-- log in -->
+    
+        <!-- log in --> 
 
         <nav class="row" id="logoBar" >
             <div class="menu-icon" style="padding-left: 20px;"><span class="fas fa-bars" id="menu-icon-bars"></span></div>
@@ -120,7 +169,7 @@
                     <li><button class="btn_menu" id="proMen">Men</button></li>
                     <li><button class="btn_menu" id="proWomen">Women</button></li>
                     <li><button class="btn_menu" id="">About Us</button></li>
-                    <li><button class="btn_menu" id="" ><a href="#footer" style="background-color: black;color: white;border-radius: 10px;">Contact</a></button></li>
+                    <li><button class="btn_menu" id="" ><a href="#footer" style="background-color:transparent;color: black;border-radius: 10px; text-decoration: none;">Contact</a></button></li>
                     <li><button class="btn_menu" id="">Blog</button></li>
 
                 </div>
@@ -136,7 +185,7 @@
                         </datalist>
                                         
                     </form>
-                    <button id="shopCart" style="background-color:white; border: none; outline: none;"><div class="fa fa-shopping-cart" id="numberCard"></div></button>
+                    <button id="shopCart" style="background-color:white; border: none; outline: none; cursor: pointer;"><div class="fa fa-shopping-cart" id="numberCard"></div></button>
                 </div>
             <div class="search-icon" id="search-icon"><span class="fas fa-search"></span></div>
             <div class="cancel-icon"><span class="fas fa-times"></span></div>
@@ -229,7 +278,7 @@
         </div>
          <div id="bottom-right" class="bottom_layout">
             <ul id="aboutus-bottom">
-                <p><a href="./about.html">ABOUT US</a></p>
+                <p><a href="./aboutus/about.html">ABOUT US</a></p>
                 <p>News</p>
                 <p>Careers</p>
                 <p>Investors</p>
@@ -246,6 +295,7 @@
             </ul>
         </div>
     </div>
+    
     <hr>
     <div class="footer2" style="text-align: center;" >
         
@@ -259,10 +309,9 @@
     </div>
     </div>
     
-    
-
 </body>
 <script src="./media/js/data.js"></script>
 <script src="./media/js/basic.js"></script>
+<script src="./media/js/login2.js"></script>
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </html>

@@ -1,0 +1,153 @@
+body{
+  width: 100%;
+  height:400px;
+  
+}
+.footer {
+  background-color: #111;
+  color: white;
+  margin-bottom: auto;
+  text-align: center;
+  font-family: monospace;
+}
+#bottom-left{
+  text-align: left;
+  left: 3%;
+  height: 150px;
+  position: relative;
+  float:left;
+  margin-right: 100px;
+}
+
+.to_the_top_button{
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 40px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    border-radius: 100%;
+    font-size: 18px;
+    padding: 0px 0px;
+    width: 50px;
+    height: 50px;
+    transition: background-color .5s;
+}
+
+.fab{
+  float:right;
+  margin:5px;
+}
+
+#bottom-right{
+ position: absolute;
+ float: right;
+ right: 0;
+ top:0;
+}
+
+a {
+  color:white;
+  text-decoration:none;
+  margin-left: 6.5%;
+  position: relative;
+  float:left;
+  text-align:left;
+}
+
+#help{
+  height: 10px;
+  wight: 10px;
+  float:left;
+  height: 10%;
+  wight: 10%;
+}
+
+#help-bottom {
+  text-align: left;
+    left: 15%;
+    position: absolute;
+    margin-right: 100px;
+    /* margin-top: 10px; */
+    float: left;
+    padding-top: 4%;
+    font-weight: 100;
+    top: -25px;
+  margin-top: 25px;
+  
+}
+#aboutus-bottom{
+  left:2%;
+  postion:absolute;
+  margin-right: 100px;
+  margin-top:10px;
+  float: left;
+  padding-top:4%;
+  font-weight:100;
+  text-algin: left;
+}
+#location{
+  float: left;;
+}
+#author {
+  padding-right: 70%;
+  text-align: center;
+  padding-top: 1rem;
+}
+.content {
+  color: white(225,225,225,0);
+  text-decoration: none;
+  font-size: 15px;
+  padding-bottom: 30px;
+}
+
+#aboutus-bottom{
+        position: absolute;
+    margin-right: 100px;
+    margin-top: 25px;
+    float: left;
+    left: 26%;
+    top: -25px;
+  text-align:left;
+}
+#location{
+   left: 10px;
+    position: absolute;
+/*     bottom: 0px; */
+    padding-top: 30px;
+}
+#author {
+  padding-right: 0;
+    text-align: center;
+    padding-top: 2rem;
+}
+.content {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    padding-bottom: 30px;
+}
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    margin-top: 0;
+/*     margin-bottom: 1rem; */
+}
+hr{
+  background: white;
+  margin-top: 14rem;
+/*   margin-bottom: 10rem; */
+  border: 0;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
